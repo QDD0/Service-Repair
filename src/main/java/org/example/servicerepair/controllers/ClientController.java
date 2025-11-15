@@ -1,0 +1,25 @@
+package org.example.servicerepair.controllers;
+
+import org.example.servicerepair.dao.ClientDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("")
+public class ClientController {
+    private ClientDAO clientDAO;
+
+    @Autowired
+    public ClientController(ClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
+
+    @GetMapping("")
+    public String index(Model model) {
+        model.addAttribute("client", clientDAO.getAllClients());
+        return "client/clientList";
+    }
+}
