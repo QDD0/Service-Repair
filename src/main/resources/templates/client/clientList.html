@@ -5,6 +5,38 @@
     <title>Title</title>
 </head>
 <body>
+    <div th:each="client : ${clientList}">
+        <a th:href="@{/client/{id}(id=${client.getClient_id()})}">
+            <div class="client-info">
+                <span th:text="${client.first_name}">First:</span>
+            </div>
+            <div class="client-info">
+                <span th:text="${client.surname}">First:</span>
+            </div>
+            <div class="client-info">
+                <span th:text="${client.last_name}">First:</span>
+            </div>
+            <div class="client-info">
+                <span th:text="${client.phone}">First:</span>
+            </div>
+            <div class="client-info">
+                <span th:text="${client.email}">First:</span>
+            </div>
+            <div class="client-info">
+                <span th:text="${client.address}">First:</span>
+            </div>
+        </a> <br>
+    </div>
 
+    <div>
+        <a th:if="${currentPage > 1}"
+           th:href="@{/(page=${currentPage - 1}, size=5)}">Prev</a>
+
+        <span th:text="${currentPage}"></span>
+        <span th:text="${totalPages}"></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/(page=${currentPage + 1}, size=5)}">Next</a>
+    </div>
 </body>
 </html>

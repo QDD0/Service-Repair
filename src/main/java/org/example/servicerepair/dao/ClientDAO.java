@@ -17,7 +17,16 @@ public class ClientDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Client>  getAllClients() {
-        return jdbcTemplate.query("SELECT * FROM client", new BeanPropertyRowMapper<>(Client.class));
+    public List<Client> getClientsPage(int page, int size) {
+        int offset = (page - 1) * size;
+
+        return jdbcTemplate.query(
+                "SELECT * FROM client ORDER BY client_id LIMIT ? OFFSET ?", new BeanPropertyRowMapper<>(Client.class), size, offset
+        );
     }
+
+    public int countClients() {
+        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM client", Integer.class);
+    }
+
 }
