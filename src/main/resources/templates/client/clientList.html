@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <div th:each="client : ${clientList}">
-        <a th:href="@{/client/{id}(id=${client.getClient_id()})}">
-            <div class="client-info">
-                <span th:text="${client.first_name}">First:</span>
-            </div>
-            <div class="client-info">
-                <span th:text="${client.surname}">First:</span>
-            </div>
-            <div class="client-info">
-                <span th:text="${client.last_name}">First:</span>
-            </div>
-            <div class="client-info">
-                <span th:text="${client.phone}">First:</span>
-            </div>
-            <div class="client-info">
-                <span th:text="${client.email}">First:</span>
-            </div>
-            <div class="client-info">
-                <span th:text="${client.address}">First:</span>
-            </div>
-        </a> <br>
+<header>
+    <div class="sidenav">
+        <a th:href="@{/}">Клиенты</a>
+        <a href="">Оборудование</a>
+        <a href="">Принятые устройства</a>
+        <a href="">Склад</a>
+        <a href="">Поставщик</a>
+        <a href="">Сотрудники</a>
+        <a href="">Услуги</a>
+        <a href="">Оплата</a>
     </div>
+</header>
 
-    <div>
-        <a th:if="${currentPage > 1}"
-           th:href="@{/(page=${currentPage - 1}, size=5)}">Prev</a>
+<div th:each="client : ${clientList}">
+    <a th:href="@{/client/{id}(id=${client.getClient_id()})}">
+        <div class="client-info">
+            <span th:text="${client.first_name}">First:</span>
+        </div>
+        <div class="client-info">
+            <span th:text="${client.surname}">First:</span>
+        </div>
+        <div class="client-info">
+            <span th:text="${client.last_name}">First:</span>
+        </div>
+        <div class="client-info">
+            <span th:text="${client.phone}">First:</span>
+        </div>
+        <div class="client-info">
+            <span th:text="${client.email}">First:</span>
+        </div>
+        <div class="client-info">
+            <span th:text="${client.address}">First:</span>
+        </div>
+    </a> <br>
+</div>
 
-        <span th:text="${currentPage}"></span>
-        <span th:text="${totalPages}"></span>
+<div>
+    <a th:if="${currentPage > 1}"
+       th:href="@{/(page=${currentPage - 1}, size=5)}">Prev</a>
 
-        <a th:if="${currentPage < totalPages}"
-           th:href="@{/(page=${currentPage + 1}, size=5)}">Next</a>
-    </div>
+    <span th:text="${currentPage}"></span>
+    <span th:text="${totalPages}"></span>
+
+    <a th:if="${currentPage < totalPages}"
+       th:href="@{/(page=${currentPage + 1}, size=5)}">Next</a>
+</div>
 </body>
 </html>
