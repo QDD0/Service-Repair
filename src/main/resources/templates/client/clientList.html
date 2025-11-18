@@ -8,7 +8,7 @@
 <body>
 <header>
     <div class="sidenav">
-        <a th:href="@{/}">Клиенты</a>
+        <a th:href="@{/client}">Клиенты</a>
         <a href="">Оборудование</a>
         <a href="">Принятые устройства</a>
         <a href="">Склад</a>
@@ -44,13 +44,13 @@
 
 <div>
     <a th:if="${currentPage > 1}"
-       th:href="@{/(page=${currentPage - 1}, size=5)}">Prev</a>
+       th:href="@{/client(page=${currentPage - 1}, size=5)}">Prev</a>
 
     <span th:text="${currentPage}"></span>
     <span th:text="${totalPages}"></span>
 
     <a th:if="${currentPage < totalPages}"
-       th:href="@{/(page=${currentPage + 1}, size=5)}">Next</a>
+       th:href="@{/client(page=${currentPage + 1}, size=5)}">Next</a>
 </div>
 </body>
 </html>

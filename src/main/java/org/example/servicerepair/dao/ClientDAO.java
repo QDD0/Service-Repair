@@ -21,7 +21,8 @@ public class ClientDAO {
         int offset = (page - 1) * size;
 
         return jdbcTemplate.query(
-                "SELECT * FROM client ORDER BY client_id LIMIT ? OFFSET ?", new BeanPropertyRowMapper<>(Client.class), size, offset
+                "SELECT * FROM client ORDER BY client_id LIMIT ? OFFSET ?",
+                new BeanPropertyRowMapper<>(Client.class), size, offset
         );
     }
 
@@ -29,4 +30,8 @@ public class ClientDAO {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM client", Integer.class);
     }
 
+    public Client getById(int id) {
+        return jdbcTemplate.query("SELECT * FROM client WHERE client_id = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Client.class)).stream().findAny().orElse(null);
+    }
 }

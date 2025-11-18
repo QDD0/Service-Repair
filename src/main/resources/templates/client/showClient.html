@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${client != null}">
+    <span th:text="${client.first_name}">First:</span><br>
+    <span th:text="${client.surname}">First:</span><br>
+    <span th:text="${client.last_name}">First:</span><br>
+    <span th:text="${client.phone}">First:</span><br>
+    <span th:text="${client.email}">First:</span><br>
+    <span th:text="${client.address}">First:</span><br>
+</div>
+<a th:href="@{/client}">Вернуться назад</a>
+</body>
+</html>
