@@ -5,15 +5,12 @@ import org.example.servicerepair.source.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/client")
+@RequestMapping("/clients")
 public class ClientController {
     private ClientDAO clientDAO;
 
@@ -32,7 +29,7 @@ public class ClientController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
-        return "client/clientList";
+        return "clients/clientList";
     }
 
     @GetMapping("/{id}")
@@ -41,8 +38,26 @@ public class ClientController {
 
         if (client != null) {
             model.addAttribute("client", client);
-            return  "client/showClient";
+            return "clients/showClient";
         }
-        return "redirect:/client";
+        return "redirect:/clients";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editClient(Model model, @PathVariable("id") int id) {
+        Client client = clientDAO.getById(id);
+
+        if (client != null) {
+            model.addAttribute("client", client);
+            return "clients/editClient";
+        }
+        return "redirect:/clients";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateClient(@PathVariable("id") int id, @ModelAttribute("client") Client client) {
+        clientDAO.editClient(id, client);
+
+        return "redirect:/clients";
     }
 }

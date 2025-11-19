@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/clients/{id}/update(id=${client.client_id})}" method="post" th:object="${client}">
+    <label for="first_name">Имя:</label>
+    <input type="text" id="first_name" th:field="*{first_name}"><br>
+
+    <label for="surname">Фамилия:</label>
+    <input type="text" id="surname" th:field="*{surname}"><br>
+
+    <label for="last_name">Отчество:</label>
+    <input type="text" id="last_name" th:field="*{last_name}"><br>
+
+    <label for="phone">Телефон:</label>
+    <input type="text" id="phone" th:field="*{phone}"><br>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" th:field="*{email}"><br>
+
+    <label for="address">Адрес:</label>
+    <input type="text" id="address" th:field="*{address}"><br>
+
+    <button type="submit">Обновить</button>
+</form>
+<a href="/clients">Вернуться назад</a>
+</body>
+</html>

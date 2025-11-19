@@ -13,6 +13,7 @@
     <span th:text="${client.email}">First:</span><br>
     <span th:text="${client.address}">First:</span><br>
 </div>
-<a th:href="@{/client}">Вернуться назад</a>
+<a th:href="@{/clients/{id}/edit(id=${client.client_id})}">Редактировать</a>
+<a th:href="@{/clients}">Вернуться назад</a>
 </body>
 </html>

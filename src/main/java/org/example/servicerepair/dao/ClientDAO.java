@@ -34,4 +34,9 @@ public class ClientDAO {
         return jdbcTemplate.query("SELECT * FROM client WHERE client_id = ?", new Object[]{id},
                 new BeanPropertyRowMapper<>(Client.class)).stream().findAny().orElse(null);
     }
+
+    public void editClient(int id, Client client) {
+        jdbcTemplate.update("UPDATE client SET first_name = ?, surname = ?, last_name = ?, phone = ?, email = ?, address = ? WHERE client_id = ? ",
+                client.getFirst_name(), client.getSurname(), client.getLast_name(), client.getPhone(), client.getEmail(), client.getAddress(), id);
+    }
 }
