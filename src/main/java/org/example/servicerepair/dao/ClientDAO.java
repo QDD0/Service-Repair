@@ -44,4 +44,8 @@ public class ClientDAO {
         jdbcTemplate.update("UPDATE client SET first_name = ?, surname = ?, last_name = ?, phone = ?, email = ?, address = ? WHERE client_id = ? ",
                 client.getFirst_name(), client.getSurname(), client.getLast_name(), client.getPhone(), client.getEmail(), client.getAddress(), id);
     }
+
+    public void deleteClient(int id) {
+        jdbcTemplate.update("DELETE FROM client WHERE client_id = ?", id);
+    }
 }

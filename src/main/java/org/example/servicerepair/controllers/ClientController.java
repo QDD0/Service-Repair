@@ -72,4 +72,10 @@ public class ClientController {
 
         return "redirect:/clients";
     }
+
+    @PostMapping("/{id}/delete")
+    public String deleteClient(@PathVariable("id") int id) {
+        clientDAO.deleteClient(id);
+        return "redirect:/clients";
+    }
 }
