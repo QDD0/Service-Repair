@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<header>
+    <div class="sidenav">
+        <a th:href="@{/clients}">Клиенты</a>
+        <a th:href="@{/devices}">Оборудование</a>
+        <a href="">Принятые устройства</a>
+        <a href="">Склад</a>
+        <a href="">Поставщик</a>
+        <a href="">Сотрудники</a>
+        <a href="">Услуги</a>
+        <a href="">Оплата</a>
+    </div>
+</header>
+
+<div th:each="device : ${deviceList}">
+    <a th:href="@{/devices/{id}/(id=${device.getDevice_id()})}">
+        <div class="device-info">
+            <span th:text="${device.type}"></span>
+        </div>
+        <div class="device-info">
+            <span th:text="${device.brand}"></span>
+        </div>
+        <div class="device-info">
+            <span th:text="${device.model}"></span>
+        </div>
+        <div class="device-info">
+            <span th:text="${device.description}"></span>
+        </div>
+    </a> <br>
+</div>
+
+<div>
+    <a th:if="${currentPage > 1}"
+       th:href="@{/devices(page=${currentPage - 1}, size = 5)}">Prev</a>
+
+    <span th:text="${currentPage}"></span>
+    <span th:text="${totalPages}"></span>
+
+    <a th:if="${currentPage < totalPages}"
+       th:href="@{/devices(page=${currentPage + 1}, sixe=5)}">Next</a>
+</div>
+</body>
+</html>
