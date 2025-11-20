@@ -52,5 +52,7 @@
     <a th:if="${currentPage < totalPages}"
        th:href="@{/clients(page=${currentPage + 1}, size=5)}">Next</a>
 </div>
+
+<a href="clients/addClient">Добавить клиента</a>
 </body>
 </html>

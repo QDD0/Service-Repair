@@ -26,6 +26,11 @@ public class ClientDAO {
         );
     }
 
+    public void addClient(Client client) {
+        jdbcTemplate.update("INSERT INTO client(first_name, surname, last_name, phone, email, address) VALUES  (?, ?, ?, ?, ?, ?)",
+                client.getFirst_name(), client.getSurname(), client.getLast_name(), client.getPhone(), client.getEmail(), client.getAddress());
+    }
+
     public int countClients() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM client", Integer.class);
     }

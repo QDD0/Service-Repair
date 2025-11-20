@@ -32,6 +32,18 @@ public class ClientController {
         return "clients/clientList";
     }
 
+    @GetMapping("/addClient")
+    public String addClient(Model model) {
+        model.addAttribute("addClient", new Client());
+        return "clients/addClient";
+    }
+
+    @PostMapping()
+    public String addClient(@ModelAttribute("addClient") Client client) {
+        clientDAO.addClient(client);
+        return "redirect:/clients";
+    }
+
     @GetMapping("/{id}")
     public String showById(Model model, @PathVariable("id") int id) {
         Client client = clientDAO.getById(id);
