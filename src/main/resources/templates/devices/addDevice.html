@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/devices}" th:object="${addDevice}">
+    <input type="text" th:field="*{type}"> <br>
+    <input type="text" th:field="*{brand}"><br>
+    <input type="text" th:field="*{model}"><br>
+    <input type="text" th:field="*{description}"><br>
+
+    <button type="submit">Создать</button>
+</form>
+<a th:href="@{/devices}">Вернуться назад</a>
+</body>
+</html>

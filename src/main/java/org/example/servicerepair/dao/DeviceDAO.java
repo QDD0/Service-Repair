@@ -27,4 +27,9 @@ public class DeviceDAO {
     public int countDevices() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM device", Integer.class);
     }
+
+    public void addDevice(Device device) {
+        jdbcTemplate.update("INSERT INTO device(type, brand, model, description) VALUES (?,?,?, ?)",
+                device.getType(), device.getBrand(), device.getModel(), device.getDescription());
+    }
 }

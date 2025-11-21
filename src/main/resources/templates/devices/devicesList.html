@@ -36,6 +36,8 @@
     </a> <br>
 </div>
 
+<a th:href="@{/devices/addDevice}">Добавить</a>
+
 <div>
     <a th:if="${currentPage > 1}"
        th:href="@{/devices(page=${currentPage - 1}, size = 5)}">Prev</a>

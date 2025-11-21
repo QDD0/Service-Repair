@@ -5,9 +5,7 @@ import org.example.servicerepair.source.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,17 @@ public class DeviceController {
         model.addAttribute("totalPages", totalPages);
 
         return "devices/devicesList";
+    }
+
+    @GetMapping("/addDevice")
+    public String addDevice(Model model) {
+        model.addAttribute("addDevice", new Device());
+        return "devices/addDevice";
+    }
+
+    @PostMapping("")
+    public String addDevice(Device device, @ModelAttribute("addDevice")  Model model) {
+        deviceDAO.addDevice(device);
+        return "redirect:/devices";
     }
 }
