@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${device != null}">
+    <span th:text="${device.type}">Type</span><br>
+    <span th:text="${device.brand}">Brand</span><br>
+    <span th:text="${device.model}">Model</span><br>
+    <span th:text="${device.description}">Description</span><br>
+</div>
+<a th:href="@{/devices}">Вернуться назад</a> <br>
+<a th:href="@{/devices/{id}/edit(id=${device.device_id})}">Редактировать</a>
+</body>
+</html>

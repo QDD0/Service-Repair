@@ -1,6 +1,7 @@
 package org.example.servicerepair.controllers;
 
 import org.example.servicerepair.dao.DeviceDAO;
+import org.example.servicerepair.source.Client;
 import org.example.servicerepair.source.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,8 +40,36 @@ public class DeviceController {
     }
 
     @PostMapping("")
-    public String addDevice(Device device, @ModelAttribute("addDevice")  Model model) {
+    public String addDevice(Device device, @ModelAttribute("addDevice") Model model) {
         deviceDAO.addDevice(device);
+        return "redirect:/devices";
+    }
+
+    @GetMapping("/{id}")
+    public String showById(Model model, @PathVariable("id") int id) {
+        Device device = deviceDAO.getById(id);
+
+        if (device != null) {
+            model.addAttribute("device", device);
+            return "devices/showDevice";
+        }
+        return "redirect:/devices";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editDevice(Model model, @PathVariable("id") int id) {
+        Device device = deviceDAO.getById(id);
+
+        if (device != null) {
+            model.addAttribute("device", device);
+            return "devices/editDevice";
+        }
+        return "redirect:/devices";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateDevice(@PathVariable("id") int id, @ModelAttribute("device") Device device) {
+        deviceDAO.editDevice(id, device);
         return "redirect:/devices";
     }
 }

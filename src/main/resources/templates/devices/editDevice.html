@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/devices/{id}/update(id=${device.device_id})}" th:object="${device}">
+    <label for="type">Тип:</label>
+    <input type="text" id="type" th:field="*{type}"><br>
+
+    <label for="brand">Бренд:</label>
+    <input type="text" id="brand" th:field="*{brand}"><br>
+
+    <label for="model">Модель:</label>
+    <input type="text" id="model" th:field="*{model}"><br>
+
+    <label for="description">Описание:</label>
+    <input type="text" id="description" th:field="*{description}"><br>
+
+    <button type="submit">Отправить</button>
+</form>
+<a th:href="@{/devices}">Вернуться назад</a>
+</body>
+</html>

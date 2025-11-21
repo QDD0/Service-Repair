@@ -32,4 +32,14 @@ public class DeviceDAO {
         jdbcTemplate.update("INSERT INTO device(type, brand, model, description) VALUES (?,?,?, ?)",
                 device.getType(), device.getBrand(), device.getModel(), device.getDescription());
     }
+
+    public Device getById(int id) {
+        return jdbcTemplate.query("SELECT * FROM device WHERE device_id = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Device.class)).stream().findAny().orElse(null);
+    }
+
+    public void editDevice(int id, Device device) {
+        jdbcTemplate.update("UPDATE device SET type =?, brand=?, model=?, description=? WHERE device_id=?",
+                device.getType(), device.getBrand(), device.getModel(), device.getDescription(),id);
+    }
 }

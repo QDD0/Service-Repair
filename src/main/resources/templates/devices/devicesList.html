@@ -20,7 +20,7 @@
 </header>
 
 <div th:each="device : ${deviceList}">
-    <a th:href="@{/devices/{id}/(id=${device.getDevice_id()})}">
+    <a th:href="@{/devices/{id}(id=${device.getDevice_id()})}">
         <div class="device-info">
             <span th:text="${device.type}"></span>
         </div>
