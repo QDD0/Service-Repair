@@ -72,4 +72,10 @@ public class DeviceController {
         deviceDAO.editDevice(id, device);
         return "redirect:/devices";
     }
+
+    @PostMapping("/{id}/delete")
+    public String deleteDevice(@PathVariable("id") int id) {
+        deviceDAO.deleteDevice(id);
+        return "redirect:/devices";
+    }
 }

@@ -40,6 +40,10 @@ public class DeviceDAO {
 
     public void editDevice(int id, Device device) {
         jdbcTemplate.update("UPDATE device SET type =?, brand=?, model=?, description=? WHERE device_id=?",
-                device.getType(), device.getBrand(), device.getModel(), device.getDescription(),id);
+                device.getType(), device.getBrand(), device.getModel(), device.getDescription(), id);
+    }
+
+    public void deleteDevice(int id) {
+        jdbcTemplate.update("DELETE FROM device WHERE device_id = ?", id);
     }
 }

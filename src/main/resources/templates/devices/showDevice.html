@@ -13,5 +13,8 @@
 </div>
 <a th:href="@{/devices}">Вернуться назад</a> <br>
 <a th:href="@{/devices/{id}/edit(id=${device.device_id})}">Редактировать</a>
+<form method="post" th:action="@{/devices/{id}/delete(id=${device.device_id})}">
+    <button type="submit">Удалить</button>
+</form>
 </body>
 </html>
