@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/clients")
 public class ClientController {
-    private ClientDAO clientDAO;
+    private final ClientDAO clientDAO;
 
     @Autowired
     public ClientController(ClientDAO clientDAO) {

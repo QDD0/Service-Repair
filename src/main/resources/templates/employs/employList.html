@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Employ</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -19,34 +19,28 @@
     </div>
 </header>
 
-<div th:each="device : ${deviceList}">
-    <a th:href="@{/devices/{id}(id=${device.getDevice_id()})}">
-        <div class="device-info">
-            <span th:text="${device.type}"></span>
-        </div>
-        <div class="device-info">
-            <span th:text="${device.brand}"></span>
-        </div>
-        <div class="device-info">
-            <span th:text="${device.model}"></span>
-        </div>
-        <div class="device-info">
-            <span th:text="${device.description}"></span>
-        </div>
+<div th:each="employ : ${employList}">
+    <a th:href="@{/employs/{id}(id=${employ.getId_employ()})}">
+        <span th:text="${employ.first_name}">First</span> <br>
+        <span th:text="${employ.surname}">Sur</span><br>
+        <span th:text="${employ.last_name}">Last</span><br>
+        <span th:text="${employ.position}">Position</span><br>
+        <span th:text="${employ.phone}">Phone</span><br>
+        <span th:text="${employ.email}">Email</span><br>
     </a> <br>
 </div>
 
-<a th:href="@{/devices/addDevice}">Добавить</a>
+<a th:href="@{/employs/}">Добавить</a>
 
 <div>
     <a th:if="${currentPage > 1}"
-       th:href="@{/devices(page=${currentPage - 1}, size = 5)}">Prev</a>
+       th:href="@{/employs(page=${currentPage - 1}, size = 5)}">Prev</a>
 
     <span th:text="${currentPage}"></span>
     <span th:text="${totalPages}"></span>
 
     <a th:if="${currentPage < totalPages}"
-       th:href="@{/devices(page=${currentPage + 1}, sixe=5)}">Next</a>
+       th:href="@{/employs(page=${currentPage + 1}, sixe=5)}">Next</a>
 </div>
 </body>
 </html>
