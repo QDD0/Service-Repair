@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employ</title>
+</head>
+<body>
+<form method="post" th:action="@{/employs/{id}/update(id=${employ.id_employ})}" th:object="${employ}">
+
+    <label for="first_name">Имя:</label>
+    <input type="text" th:field="*{first_name}" id="first_name"><br>
+
+    <label for="surname">Фамилия:</label>
+    <input type="text" th:field="*{surname}" id="surname"><br>
+
+    <label for="last_name">Отчество:</label>
+    <input type="text" th:field="*{last_name}" id="last_name"><br>
+
+    <label for="position">Должность:</label>
+    <input type="text" th:field="*{position}" id="position"><br>
+
+    <label for="phone">Телефон:</label>
+    <input type="text" th:field="*{phone}" id="phone"><br>
+
+    <label for="email">Email:</label>
+    <input type="email" th:field="*{email}" id="email"><br>
+
+    <button type="submit">Редактировать</button>
+    <br>
+</form>
+<a th:href="@{/employs}">Вернуться назад</a><br>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/employs}" th:object="${employ}">
+    <input type="text" th:field="*{first_name}"><br>
+    <input type="text" th:field="*{surname}"><br>
+    <input type="text" th:field="*{last_name}"><br>
+    <input type="text" th:field="*{position}"><br>
+    <input type="text" th:field="*{phone}"><br>
+    <input type="text" th:field="*{email}"><br>
+
+    <button type="submit">Добавить</button>
+    <br>
+</form>
+<a th:href="@{/employs}">Вернуться назад</a>
+</body>
+</html>

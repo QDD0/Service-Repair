@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${employs != null}">
+    <span th:text="${employs.first_name}">First</span><br>
+    <span th:text="${employs.surname}">Surname</span><br>
+    <span th:text="${employs.last_name}">Last</span><br>
+    <span th:text="${employs.position}">Position</span><br>
+    <span th:text="${employs.phone}">Phone</span><br>
+    <span th:text="${employs.email}">Email</span><br>
+</div>
+<a th:href="@{/employs/{id}/edit(id=${employs.id_employ})}">Редактировать</a><br>
+<form method="post" th:action="@{/employs/{id}/delete(id=${employs.id_employ})}"><br>
+    <button type="submit">Удалить</button>
+</form>
+<a th:href="@{/employs}">Вернуться назад</a>
+</body>
+</html>
