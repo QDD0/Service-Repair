@@ -18,5 +18,26 @@
         <a th:href="@{/payments}">Оплата</a>
     </div>
 </header>
+
+<div th:each="services : ${servicesList}">
+    <a th:href="@{/services/{id}(id=${services.getId_service()})}">
+        <span th:text="${services.name_service}">Name</span><br>
+        <span th:text="${services.description}">Description</span><br>
+        <span th:text="${services.price}">Price</span><br>
+    </a><br>
+</div>
+
+<div>
+    <a th:if="${currentPage > 1}"
+       th:href="@{/services(page=${currentPage - 1}, size=5)}">Prev</a>
+
+    <span th:text="${currentPage}"></span>
+    <span th:text="${totalPages}"></span>
+
+    <a th:if="${currentPage < totalPages}"
+       th:href="@{/services(page=${currentPage + 1}, size=5)}">Next</a>
+</div>
+
+<a href="services/addClient">Добавить</a>
 </body>
 </html>
