@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/services}" th:object="${addServices}">
+    <input type="text" th:field="*{name_service}"><br>
+    <input type="text" th:field="*{description}"><br>
+    <input type="text" th:field="*{price}"><br>
+
+    <button type="submit">Добавить</button>
+</form>
+<a th:href="@{/services}">Вернуться назад</a>
+</body>
+</html>

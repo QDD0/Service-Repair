@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:if="${services != null}">
+        <span th:text="${services.name_service}">Name</span><br>
+        <span th:text="${services.description}">Description</span><br>
+        <span th:text="${services.price}">Price</span><br>
+    </div>
+
+
+<a th:href="@{/services}">Вернуться назад</a><br>
+</body>
+</html>

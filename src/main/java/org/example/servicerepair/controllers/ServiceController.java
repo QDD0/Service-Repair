@@ -5,9 +5,7 @@ import org.example.servicerepair.source.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,28 @@ public class ServiceController {
         model.addAttribute("totalPages", totalPage);
 
         return "services/servicesList";
+    }
+
+    @GetMapping("/addService")
+    public String addService(Model model) {
+        model.addAttribute("addServices", new Services());
+        return "services/addService";
+    }
+
+    @PostMapping("")
+    public String addService(@ModelAttribute("addServices") Services services) {
+        servicesDAO.addService(services);
+        return "redirect:/services";
+    }
+
+    @GetMapping("/{id}")
+    public String showById(@PathVariable("id") int id, Model model) {
+        Services services = servicesDAO.getByIdService(id);
+
+        if (services != null) {
+            model.addAttribute("services", services);
+            return "services/showService";
+        }
+        return "redirect:/services";
     }
 }

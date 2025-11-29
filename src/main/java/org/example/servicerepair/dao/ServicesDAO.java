@@ -27,4 +27,15 @@ public class ServicesDAO {
     public int countServices() {
         return jdbcTemplate.queryForObject("SELECT count(*) FROM services", Integer.class);
     }
+
+    public void addService(Services service) {
+        jdbcTemplate.update("INSERT INTO services(name_service, description, price) VALUES (?, ?, ?)",
+                service.getName_service(), service.getDescription(), service.getPrice());
+    }
+
+    public Services getByIdService(int id) {
+        return jdbcTemplate.query("SELECT * FROM services WHERE id_service = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Services.class))
+                .stream().findFirst().orElse(null);
+    }
 }
