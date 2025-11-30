@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" th:action="@{/services/{id}/update(id=${services.id_service})}" th:object="${services}">
+        <label name="name_service">Name: </label>
+        <input type="text" id="name_service" th:field="*{name_service}"><br>
+
+        <label name="description">Description: </label>
+        <input type="text" id="description" th:field="*{description}"><br>
+
+        <label name="price">Price: </label>
+        <input type="text" id="price" th:field="*{price}"><br>
+
+        <button type="submit">Редактировать</button>
+    </form>
+
+<a th:href="@{/services}">Вернуться назад</a>
+</body>
+</html>

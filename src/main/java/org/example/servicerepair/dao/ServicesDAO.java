@@ -35,7 +35,16 @@ public class ServicesDAO {
 
     public Services getByIdService(int id) {
         return jdbcTemplate.query("SELECT * FROM services WHERE id_service = ?", new Object[]{id},
-                new BeanPropertyRowMapper<>(Services.class))
+                        new BeanPropertyRowMapper<>(Services.class))
                 .stream().findFirst().orElse(null);
+    }
+
+    public void editService(int id, Services service) {
+        jdbcTemplate.update("UPDATE services SET name_service = ?,description = ?, price = ? WHERE id_service = ?",
+                service.getName_service(), service.getDescription(), service.getPrice(), id);
+    }
+
+    public void deleteService(int id) {
+        jdbcTemplate.update("DELETE FROM services WHERE id_service = ?", id);
     }
 }

@@ -54,4 +54,27 @@ public class ServiceController {
         }
         return "redirect:/services";
     }
+
+    @GetMapping("/{id}/edit")
+    public String editService(Model model, @PathVariable("id") int id) {
+        Services services = servicesDAO.getByIdService(id);
+
+        if (services != null) {
+            model.addAttribute("services", services);
+            return "services/editService";
+        }
+        return "redirect:/services";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateService(@ModelAttribute("services") Services services, @PathVariable("id") int id) {
+        servicesDAO.editService(id, services);
+        return "redirect:/services";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteService(@PathVariable("id") int id) {
+        servicesDAO.deleteService(id);
+        return "redirect:/services";
+    }
 }
