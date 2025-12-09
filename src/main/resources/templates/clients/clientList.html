@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Clients</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <title>Клиенты</title>
+    <link rel="stylesheet" th:href="@{/css/styleClient.css}"/>
 </head>
 <body>
 <header>
@@ -19,40 +19,40 @@
     </div>
 </header>
 
-<div th:each="client : ${clientList}">
-    <a th:href="@{/clients/{id}(id=${client.getClient_id()})}">
-        <div class="client-info">
-            <span th:text="${client.first_name}">First:</span>
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Клиенты</h1>
+        <a href="clients/addClient" class="add-button">Добавить клиента</a>
+    </div>
+
+    <div class="client-list">
+        <div th:each="client : ${clientList}">
+            <a th:href="@{/clients/{id}(id=${client.getClient_id()})}" class="client-card">
+                <div class="client-name">
+                    <span th:text="${client.last_name + ' ' + client.first_name + ' ' + client.surname}">ФИО клиента</span>
+                </div>
+                <div class="client-contact">
+                    <span th:text="${client.phone}">Телефон</span>
+                </div>
+                <div class="client-contact">
+                    <span th:text="${client.email}">Email</span>
+                </div>
+                <div class="client-contact">
+                    <span th:text="${client.address}">Адрес</span>
+                </div>
+            </a>
         </div>
-        <div class="client-info">
-            <span th:text="${client.surname}">First:</span>
-        </div>
-        <div class="client-info">
-            <span th:text="${client.last_name}">First:</span>
-        </div>
-        <div class="client-info">
-            <span th:text="${client.phone}">First:</span>
-        </div>
-        <div class="client-info">
-            <span th:text="${client.email}">First:</span>
-        </div>
-        <div class="client-info">
-            <span th:text="${client.address}">First:</span>
-        </div>
-    </a> <br>
+    </div>
+
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/clients(page=${currentPage - 1}, size=5)}">Назад</a>
+
+        <span th:text="'Страница ' + ${currentPage} + ' из ' + ${totalPages}"></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/clients(page=${currentPage + 1}, size=5)}">Вперед</a>
+    </div>
 </div>
-
-<div>
-    <a th:if="${currentPage > 1}"
-       th:href="@{/clients(page=${currentPage - 1}, size=5)}">Prev</a>
-
-    <span th:text="${currentPage}"></span>
-    <span th:text="${totalPages}"></span>
-
-    <a th:if="${currentPage < totalPages}"
-       th:href="@{/clients(page=${currentPage + 1}, size=5)}">Next</a>
-</div>
-
-<a href="clients/addClient">Добавить клиента</a>
 </body>
 </html>
