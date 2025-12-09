@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suppliers</title>
+</head>
+<body>
+    <form method="post" th:action="@{/suppliers}" th:object="${addSupplier}">
+        <input type="text" th:field="*{name_company}"><br>
+        <input type="text" th:field="*{first_name}"><br>
+        <input type="text" th:field="*{surname}"><br>
+        <input type="text" th:field="*{last_name}"><br>
+        <input type="text" th:field="*{phone}"><br>
+        <input type="text" th:field="*{address}"><br>
+        <input type="text" th:field="*{email}"><br>
+
+        <button type="submit">Добавить</button>
+    </form>
+<a th:href="@{/suppliers}">Вернуться назад</a>
+</body>
+</html>

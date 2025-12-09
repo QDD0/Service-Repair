@@ -18,5 +18,30 @@
         <a th:href="@{/payments}">Оплата</a>
     </div>
 </header>
+
+<div th:each="suppliers : ${suppliersList}">
+    <a th:href="@{/suppliers/{id}(id=${suppliers.getSupplier_id()})}">
+        <span th:text="${suppliers.name_company}">Name Company</span><br>
+        <span th:text="${suppliers.first_name}">First Name</span><br>
+        <span th:text="${suppliers.surname}">Surname</span><br>
+        <span th:text="${suppliers.last_name}">Last Name</span><br>
+        <span th:text="${suppliers.phone}">Phone</span><br>
+        <span th:text="${suppliers.address}">Address</span><br>
+        <span th:text="${suppliers.email}">Email</span><br>
+    </a> <br>
+</div>
+
+<div>
+    <a th:if="${currentPage > 1}"
+       th:href="@{/suppliers(page=${currentPage - 1}, size=5)}">Prev</a>
+
+    <span th:text="${currentPage}"></span>
+    <span th:text="${totalPages}"></span>
+
+    <a th:if="${currentPage < totalPages}"
+       th:href="@{/suppliers(page=${currentPage + 1}, size=5)}">Next</a>
+</div>
+
+<a href="suppliers/addSupplier">Добавить клиента</a>
 </body>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier</title>
+</head>
+<body>
+<div th:if="${suppliers != null }">
+    <span th:text="${suppliers.name_company}">name_company</span><br>
+    <span th:text="${suppliers.first_name}">first_name</span><br>
+    <span th:text="${suppliers.surname}">surname</span><br>
+    <span th:text="${suppliers.last_name}">last_name</span><br>
+    <span th:text="${suppliers.phone}">phone</span><br>
+    <span th:text="${suppliers.address}">address</span><br>
+    <span th:text="${suppliers.email}">email</span><br>
+</div>
+<a th:href="@{/suppliers}">Вернуться назад</a><br>
+<a th:href="@{/suppliers/{id}/edit(id=${suppliers.supplier_id})}">Редактировать</a><br>
+<form method="post" th:action="@{/suppliers/{id}/delete(id=${suppliers.supplier_id})}">
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>

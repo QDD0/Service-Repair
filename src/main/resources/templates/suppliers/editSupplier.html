@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier</title>
+</head>
+<body>
+<form method="post" th:action="@{/suppliers/{id}/update(id=${suppliers.supplier_id})}" th:object="${suppliers}">
+    <label name="name_company"></label>
+    <input type="text" id="name_company" th:field="*{name_company}"><br>
+    <label name="first_name"></label>
+    <input type="text" id="first_name" th:field="*{first_name}"><br>
+    <label name="surname"></label>
+    <input type="text" id="surname" th:field="*{surname}"><br>
+    <label name="last_name"></label>
+    <input type="text" id="last_name" th:field="*{last_name}"><br>
+    <label name="phone"></label>
+    <input type="text" id="phone" th:field="*{phone}"><br>
+    <label name="address"></label>
+    <input type="text" id="address" th:field="*{address}"><br>
+    <label name="email"></label>
+    <input type="text" id="email" th:field="*{email}"><br>
+
+    <button type="submit">Сохранить</button>
+</form>
+<a th:href="@{/suppliers}">Вернуться назад</a>
+</body>
+</html>

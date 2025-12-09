@@ -1,6 +1,5 @@
 package org.example.servicerepair.dao;
 
-import org.example.servicerepair.source.Device;
 import org.example.servicerepair.source.Employ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
