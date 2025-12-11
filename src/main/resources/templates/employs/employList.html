@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Employ</title>
+    <title>Сотрудники</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -19,28 +19,45 @@
     </div>
 </header>
 
-<div th:each="employ : ${employList}">
-    <a th:href="@{/employs/{id}(id=${employ.getId_employ()})}">
-        <span th:text="${employ.first_name}">First</span> <br>
-        <span th:text="${employ.surname}">Sur</span><br>
-        <span th:text="${employ.last_name}">Last</span><br>
-        <span th:text="${employ.position}">Position</span><br>
-        <span th:text="${employ.phone}">Phone</span><br>
-        <span th:text="${employ.email}">Email</span><br>
-    </a> <br>
-</div>
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Сотрудники</h1>
+        <a class="add-button" th:href="@{/employs/addEmploy}">Добавить сотрудника</a>
+    </div>
 
-<a th:href="@{/employs/addEmploy}">Добавить</a>
+    <div class="list-container">
+        <a class="card"
+           th:each="employ : ${employList}"
+           th:href="@{/employs/{id}(id=${employ.id_employ})}">
 
-<div>
-    <a th:if="${currentPage > 1}"
-       th:href="@{/employs(page=${currentPage - 1}, size = 5)}">Prev</a>
+            <div class="card-name">
+                <span th:text="${employ.surname + ' ' + employ.first_name + ' ' + employ.last_name}"></span>
+            </div>
 
-    <span th:text="${currentPage}"></span>
-    <span th:text="${totalPages}"></span>
+            <div class="card-info">
+                Должность: <span th:text="${employ.position}"></span>
+            </div>
 
-    <a th:if="${currentPage < totalPages}"
-       th:href="@{/employs(page=${currentPage + 1}, sixe=5)}">Next</a>
+            <div class="card-info">
+                Телефон: <span th:text="${employ.phone}"></span>
+            </div>
+
+            <div class="card-info">
+                Email: <span th:text="${employ.email}"></span>
+            </div>
+
+        </a>
+    </div>
+
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/employs(page=${currentPage - 1}, size=5)}">Назад</a>
+
+        <span>Страница<span th:text="${currentPage}"></span> из <span th:text="${totalPages}"></span></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/employs(page=${currentPage + 1}, size=5)}">Вперед</a>
+    </div>
 </div>
 </body>
 </html>

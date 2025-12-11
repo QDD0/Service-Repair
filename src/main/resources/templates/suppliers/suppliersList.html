@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Suppliers</title>
+    <title>Поставщики</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -19,29 +19,43 @@
     </div>
 </header>
 
-<div th:each="suppliers : ${suppliersList}">
-    <a th:href="@{/suppliers/{id}(id=${suppliers.getSupplier_id()})}">
-        <span th:text="${suppliers.name_company}">Name Company</span><br>
-        <span th:text="${suppliers.first_name}">First Name</span><br>
-        <span th:text="${suppliers.surname}">Surname</span><br>
-        <span th:text="${suppliers.last_name}">Last Name</span><br>
-        <span th:text="${suppliers.phone}">Phone</span><br>
-        <span th:text="${suppliers.address}">Address</span><br>
-        <span th:text="${suppliers.email}">Email</span><br>
-    </a> <br>
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Поставщики</h1>
+        <a href="suppliers/addSupplier" class="add-button">Добавить поставщика</a>
+    </div>
+
+    <div class="list-container">
+        <a class="card"
+           th:each="suppliers : ${suppliersList}"
+           th:href="@{/suppliers/{id}(id=${suppliers.getSupplier_id()})}">
+            <div class="card-name">
+                <span th:text="${suppliers.name_company}"></span>
+            </div>
+            <div class="card-info">
+                Контактное лицо: <span th:text="${suppliers.last_name + ' ' + suppliers.first_name + ' ' + suppliers.surname}"></span>
+            </div>
+            <div class="card-info">
+                Телефон: <span th:text="${suppliers.phone}"></span>
+            </div>
+            <div class="card-info">
+                Адрес: <span th:text="${suppliers.address}"></span>
+            </div>
+            <div class="card-info">
+                Email: <span th:text="${suppliers.email}"></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/suppliers(page=${currentPage - 1}, size=5)}">Назад</a>
+
+        <span th:text="'Страница ' + ${currentPage} + ' из ' + ${totalPages}"></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/suppliers(page=${currentPage + 1}, size=5)}">Вперед</a>
+    </div>
 </div>
-
-<div>
-    <a th:if="${currentPage > 1}"
-       th:href="@{/suppliers(page=${currentPage - 1}, size=5)}">Prev</a>
-
-    <span th:text="${currentPage}"></span>
-    <span th:text="${totalPages}"></span>
-
-    <a th:if="${currentPage < totalPages}"
-       th:href="@{/suppliers(page=${currentPage + 1}, size=5)}">Next</a>
-</div>
-
-<a href="suppliers/addSupplier">Добавить клиента</a>
 </body>
 </html>

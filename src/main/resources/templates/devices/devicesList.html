@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Devices</title>
+    <title>Оборудование</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -19,34 +19,39 @@
     </div>
 </header>
 
-<div th:each="device : ${deviceList}">
-    <a th:href="@{/devices/{id}(id=${device.getDevice_id()})}">
-        <div class="device-info">
-            <span th:text="${device.type}"></span>
-        </div>
-        <div class="device-info">
-            <span th:text="${device.brand}"></span>
-        </div>
-        <div class="device-info">
-            <span th:text="${device.model}"></span>
-        </div>
-        <div class="device-info">
-            <span th:text="${device.description}"></span>
-        </div>
-    </a> <br>
-</div>
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Оборудование</h1>
+        <a class="add-button" th:href="@{/devices/addDevice}">Добавить оборудование</a>
+    </div>
 
-<a th:href="@{/devices/addDevice}">Добавить</a>
+    <div class="list-container">
+        <a class="card"
+           th:each="device : ${deviceList}"
+           th:href="@{/devices/{id}(id=${device.device_id})}">
 
-<div>
-    <a th:if="${currentPage > 1}"
-       th:href="@{/devices(page=${currentPage - 1}, size = 5)}">Prev</a>
+            <div class="card-name">
+                <span th:text="${device.brand + ' ' + device.model}"></span>
+            </div>
+            <div class="card-info">
+                Тип: <span th:text="${device.type}"></span>
+            </div>
+            <div class="card-info" th:if="${device.description}">
+                Описание: <span th:text="${device.description}"></span>
+            </div>
 
-    <span th:text="${currentPage}"></span>
-    <span th:text="${totalPages}"></span>
+        </a>
+    </div>
 
-    <a th:if="${currentPage < totalPages}"
-       th:href="@{/devices(page=${currentPage + 1}, sixe=5)}">Next</a>
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/devices(page=${currentPage - 1}, size=5)}">Назад</a>
+
+        <span>Страница<span th:text="${currentPage}"></span> из <span th:text="${totalPages}"></span></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/devices(page=${currentPage + 1}, size=5)}">Вперед</a>
+    </div>
 </div>
 </body>
 </html>

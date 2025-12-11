@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Services</title>
+    <title>Услуги</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -19,25 +19,37 @@
     </div>
 </header>
 
-<div th:each="services : ${servicesList}">
-    <a th:href="@{/services/{id}(id=${services.getId_service()})}">
-        <span th:text="${services.name_service}">Name</span><br>
-        <span th:text="${services.description}">Description</span><br>
-        <span th:text="${services.price}">Price</span><br>
-    </a><br>
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Услуги</h1>
+        <a href="services/addService" class="add-button">Добавить услугу</a>
+    </div>
+
+    <div class="list-container">
+        <a class="card"
+           th:each="services : ${servicesList}"
+           th:href="@{/services/{id}(id=${services.getId_service()})}">
+            <div class="card-name">
+                <span th:text="${services.name_service}"></span>
+            </div>
+            <div class="card-info">
+                Описание: <span th:text="${services.description}"></span>
+            </div>
+            <div class="card-info">
+                Цена: <span th:text="${services.price}"></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/services(page=${currentPage - 1}, size=5)}">Назад</a>
+
+        <span th:text="'Страница ' + ${currentPage} + ' из ' + ${totalPages}"></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/services(page=${currentPage + 1}, size=5)}">Вперед</a>
+    </div>
 </div>
-
-<div>
-    <a th:if="${currentPage > 1}"
-       th:href="@{/services(page=${currentPage - 1}, size=5)}">Prev</a>
-
-    <span th:text="${currentPage}"></span>
-    <span th:text="${totalPages}"></span>
-
-    <a th:if="${currentPage < totalPages}"
-       th:href="@{/services(page=${currentPage + 1}, size=5)}">Next</a>
-</div>
-
-<a href="services/addService">Добавить</a>
 </body>
 </html>

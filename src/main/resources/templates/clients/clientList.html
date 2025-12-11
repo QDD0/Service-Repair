@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Клиенты</title>
-    <link rel="stylesheet" th:href="@{/css/styleClient.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 <header>
@@ -25,20 +25,20 @@
         <a href="clients/addClient" class="add-button">Добавить клиента</a>
     </div>
 
-    <div class="client-list">
+    <div class="list-container">
         <div th:each="client : ${clientList}">
-            <a th:href="@{/clients/{id}(id=${client.getClient_id()})}" class="client-card">
-                <div class="client-name">
+            <a th:href="@{/clients/{id}(id=${client.getClient_id()})}" class="card">
+                <div class="card-name">
                     <span th:text="${client.last_name + ' ' + client.first_name + ' ' + client.surname}">ФИО клиента</span>
                 </div>
-                <div class="client-contact">
-                    <span th:text="${client.phone}">Телефон</span>
+                <div class="card-info">
+                    Телефон: <span th:text="${client.phone}"></span>
                 </div>
-                <div class="client-contact">
-                    <span th:text="${client.email}">Email</span>
+                <div class="card-info">
+                    Email: <span th:text="${client.email}"></span>
                 </div>
-                <div class="client-contact">
-                    <span th:text="${client.address}">Адрес</span>
+                <div class="card-info">
+                    Адрес: <span th:text="${client.address}"></span>
                 </div>
             </a>
         </div>
