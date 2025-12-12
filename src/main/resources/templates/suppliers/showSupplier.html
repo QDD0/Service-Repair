@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Supplier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Details</title>
+    <link rel="stylesheet" th:href="@{/css/showStyle.css}">
 </head>
 <body>
-<div th:if="${suppliers != null }">
-    <span th:text="${suppliers.name_company}">name_company</span><br>
-    <span th:text="${suppliers.first_name}">first_name</span><br>
-    <span th:text="${suppliers.surname}">surname</span><br>
-    <span th:text="${suppliers.last_name}">last_name</span><br>
-    <span th:text="${suppliers.phone}">phone</span><br>
-    <span th:text="${suppliers.address}">address</span><br>
-    <span th:text="${suppliers.email}">email</span><br>
+<div class="container">
+    <h1>Информация о поставщике</h1>
+
+    <div class="details-container" th:if="${suppliers != null}">
+        <div class="detail-item">
+            <span class="detail-label">Компания:</span>
+            <span class="detail-value" th:text="${suppliers.name_company}">Company Name</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Имя:</span>
+            <span class="detail-value" th:text="${suppliers.first_name}">First Name</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Фамилия:</span>
+            <span class="detail-value" th:text="${suppliers.surname}">Surname</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Отчество:</span>
+            <span class="detail-value" th:text="${suppliers.last_name}">Last Name</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Телефон:</span>
+            <span class="detail-value" th:text="${suppliers.phone}">Phone</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Адрес:</span>
+            <span class="detail-value" th:text="${suppliers.address}">Address</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value" th:text="${suppliers.email}">Email</span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-edit" th:href="@{/suppliers/{id}/edit(id=${suppliers.supplier_id})}">Редактировать</a>
+
+        <form class="form-delete" method="post" th:action="@{/suppliers/{id}/delete(id=${suppliers.supplier_id})}">
+            <button class="btn btn-delete" type="submit" onclick="return confirm('Вы уверены, что хотите удалить этого поставщика?')">Удалить</button>
+        </form>
+
+        <a class="btn btn-back" th:href="@{/suppliers}">Вернуться назад</a>
+    </div>
 </div>
-<a th:href="@{/suppliers}">Вернуться назад</a><br>
-<a th:href="@{/suppliers/{id}/edit(id=${suppliers.supplier_id})}">Редактировать</a><br>
-<form method="post" th:action="@{/suppliers/{id}/delete(id=${suppliers.supplier_id})}">
-    <button type="submit">Удалить</button>
-</form>
 </body>
 </html>

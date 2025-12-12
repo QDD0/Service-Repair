@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Employ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <link rel="stylesheet" th:href="@{/css/showStyle.css}">
 </head>
 <body>
-<div th:if="${employs != null}">
-    <span th:text="${employs.first_name}">First</span><br>
-    <span th:text="${employs.surname}">Surname</span><br>
-    <span th:text="${employs.last_name}">Last</span><br>
-    <span th:text="${employs.position}">Position</span><br>
-    <span th:text="${employs.phone}">Phone</span><br>
-    <span th:text="${employs.email}">Email</span><br>
+<div class="container">
+    <h1>Информация о сотруднике</h1>
+
+    <div class="details-container" th:if="${employs != null}">
+        <div class="detail-item">
+            <span class="detail-label">Имя:</span>
+            <span class="detail-value" th:text="${employs.first_name}">First Name</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Фамилия:</span>
+            <span class="detail-value" th:text="${employs.surname}">Surname</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Отчество:</span>
+            <span class="detail-value" th:text="${employs.last_name}">Last Name</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Должность:</span>
+            <span class="detail-value" th:text="${employs.position}">Position</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Телефон:</span>
+            <span class="detail-value" th:text="${employs.phone}">Phone</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value" th:text="${employs.email}">Email</span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-edit" th:href="@{/employs/{id}/edit(id=${employs.id_employ})}">Редактировать</a>
+
+        <form class="form-delete" method="post" th:action="@{/employs/{id}/delete(id=${employs.id_employ})}">
+            <button class="btn btn-delete" type="submit" onclick="return confirm('Вы уверены, что хотите удалить этого сотрудника?')">Удалить</button>
+        </form>
+
+        <a class="btn btn-back" th:href="@{/employs}">Вернуться назад</a>
+    </div>
 </div>
-<a th:href="@{/employs/{id}/edit(id=${employs.id_employ})}">Редактировать</a><br>
-<form method="post" th:action="@{/employs/{id}/delete(id=${employs.id_employ})}"><br>
-    <button type="submit">Удалить</button>
-</form>
-<a th:href="@{/employs}">Вернуться назад</a>
 </body>
 </html>
