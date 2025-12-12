@@ -8,6 +8,14 @@ public class Storage {
     private Integer count;
     private Integer supplier_id;
 
+    public Integer getSupplier_id() {
+        return supplier_id;
+    }
+
+    public void setSupplier_id(Integer supplier_id) {
+        this.supplier_id = supplier_id;
+    }
+
     public Storage() {
 
     }

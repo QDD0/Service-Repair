@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+</head>
+<body>
+    <form method="post" th:action="@{/storage}" th:object="${addStorage}">
+        <input type="text" th:field="*{part_name}"><br>
+        <input type="text" th:field="*{part_code}"><br>
+        <input type="text" th:field="*{price}"><br>
+        <input type="text" th:field="*{count}"><br>
+
+        <label for="supplier">Выбор поставщика</label>
+        <select id="supplier" name="supplier_id">
+            <option value="">Выберите поставщика</option>
+            <option th:each="supllier : ${addSupplier}"
+                    th:value="${supllier.supplier_id}"
+                    th:text="${supllier.name_company}">
+            </option>
+        </select>
+
+        <button type="submit">Сохранить</button>
+    </form>
+<a th:href="@{/storage}">Вернуться назад</a>
+</body>
+</html>

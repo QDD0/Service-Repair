@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Storage</title>
+    <title>Склад</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -18,5 +18,41 @@
         <a th:href="@{/payments}">Оплата</a>
     </div>
 </header>
+
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Склад</h1>
+        <a href="storage/addStorage" class="add-button">Добавить деталь</a>
+    </div>
+
+    <div class="list-container">
+        <a class="card"
+           th:each="storage : ${storagesList}"
+           th:href="@{/storage/{id}(id=${storage.getPart_id()})}">
+            <div class="card-name">
+                <span th:text="${storage.part_name}"></span>
+            </div>
+            <div class="card-info">
+                Код детали: <span th:text="${storage.part_code}"></span>
+            </div>
+            <div class="card-info">
+                Цена: <span th:text="${storage.price}"></span>
+            </div>
+            <div class="card-info">
+                Количество на складе: <span th:text="${storage.count}"></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/storage(page=${currentPage - 1}, size=5)}">Назад</a>
+
+        <span th:text="'Страница ' + ${currentPage} + ' из ' + ${totalPages}"></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/storage(page=${currentPage + 1}, size=5)}">Вперед</a>
+    </div>
+</div>
 </body>
 </html>

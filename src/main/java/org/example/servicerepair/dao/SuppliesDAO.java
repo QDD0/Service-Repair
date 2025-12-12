@@ -17,6 +17,10 @@ public class SuppliesDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public List<Suppliers> getAllSuppliers() {
+        return jdbcTemplate.query("SELECT * FROM suppliers", new BeanPropertyRowMapper<>(Suppliers.class));
+    }
+
     public List<Suppliers> getAllSuppliers(int page, int size) {
         int offset = (page - 1) * size;
 
