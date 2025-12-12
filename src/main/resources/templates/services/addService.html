@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Services</title>
+    <link rel="stylesheet" th:href="@{/css/addStyle.css}"/>
 </head>
 <body>
-<form method="post" th:action="@{/services}" th:object="${addServices}">
-    <input type="text" th:field="*{name_service}"><br>
-    <input type="text" th:field="*{description}"><br>
-    <input type="text" th:field="*{price}"><br>
+<div class="container">
+    <h1 class="page-title">Добавление услуги</h1>
 
-    <button type="submit">Добавить</button>
-</form>
-<a th:href="@{/services}">Вернуться назад</a>
+    <form method="post" th:action="@{/services}" th:object="${addServices}">
+        <div class="form-group">
+            <label for="name_service">Название услуги:</label>
+            <input type="text" th:field="*{name_service}" id="name_service" placeholder="Например: Замена экрана" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <input type="text" th:field="*{description}" id="description" placeholder="Подробное описание услуги">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Стоимость (руб.):</label>
+            <input type="number" th:field="*{price}" id="price" min="0" step="0.01" placeholder="0.00" required>
+        </div>
+
+        <button type="submit">Добавить услугу</button>
+    </form>
+
+    <a th:href="@{/services}" class="back-link">← Вернуться к списку услуг</a>
+</div>
 </body>
 </html>

@@ -3,25 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Storage</title>
+    <link rel="stylesheet" th:href="@{/css/addStyle.css}"/>
 </head>
 <body>
+<div class="container">
+    <h1 class="page-title">Добавление запчасти на склад</h1>
+
     <form method="post" th:action="@{/storage}" th:object="${addStorage}">
-        <input type="text" th:field="*{part_name}"><br>
-        <input type="text" th:field="*{part_code}"><br>
-        <input type="text" th:field="*{price}"><br>
-        <input type="text" th:field="*{count}"><br>
+        <div class="form-group">
+            <label for="part_name">Название детали:</label>
+            <input type="text" th:field="*{part_name}" id="part_name" placeholder="Например: Экран iPhone 13" required>
+        </div>
 
-        <label for="supplier">Выбор поставщика</label>
-        <select id="supplier" name="supplier_id">
-            <option value="">Выберите поставщика</option>
-            <option th:each="supllier : ${addSupplier}"
-                    th:value="${supllier.supplier_id}"
-                    th:text="${supllier.name_company}">
-            </option>
-        </select>
+        <div class="form-group">
+            <label for="part_code">Артикул/Код:</label>
+            <input type="text" th:field="*{part_code}" id="part_code" placeholder="Код производителя" required>
+        </div>
 
-        <button type="submit">Сохранить</button>
+        <div class="form-group">
+            <label for="price">Цена (руб.):</label>
+            <input type="number" th:field="*{price}" id="price" min="0" step="0.01" placeholder="0.00" required>
+        </div>
+
+        <div class="form-group">
+            <label for="count">Количество:</label>
+            <input type="number" th:field="*{count}" id="count" min="1" value="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="supplier">Выбор поставщика:</label>
+            <select id="supplier" name="supplier_id" required>
+                <option value="">Выберите поставщика</option>
+                <option th:each="supllier : ${addSupplier}"
+                        th:value="${supllier.supplier_id}"
+                        th:text="${supllier.name_company}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit">Сохранить на склад</button>
     </form>
-<a th:href="@{/storage}">Вернуться назад</a>
+
+    <a th:href="@{/storage}" class="back-link">← Вернуться к складу</a>
+</div>
 </body>
 </html>

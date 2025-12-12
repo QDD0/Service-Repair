@@ -3,19 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Employ</title>
+    <link rel="stylesheet" th:href="@{/css/addStyle.css}"/>
 </head>
 <body>
-<form method="post" th:action="@{/employs}" th:object="${employ}">
-    <input type="text" th:field="*{first_name}"><br>
-    <input type="text" th:field="*{surname}"><br>
-    <input type="text" th:field="*{last_name}"><br>
-    <input type="text" th:field="*{position}"><br>
-    <input type="text" th:field="*{phone}"><br>
-    <input type="text" th:field="*{email}"><br>
+<div class="container">
+    <h1 class="page-title">Добавление сотрудника</h1>
 
-    <button type="submit">Добавить</button>
-    <br>
-</form>
-<a th:href="@{/employs}">Вернуться назад</a>
+    <form method="post" th:action="@{/employs}" th:object="${employ}">
+        <div class="form-group">
+            <label for="first_name">Имя:</label>
+            <input type="text" th:field="*{first_name}" id="first_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Фамилия:</label>
+            <input type="text" th:field="*{surname}" id="surname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Отчество:</label>
+            <input type="text" th:field="*{last_name}" id="last_name">
+        </div>
+
+        <div class="form-group">
+            <label for="position">Должность:</label>
+            <input type="text" th:field="*{position}" id="position" placeholder="Например: Мастер, Консультант" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" th:field="*{phone}" id="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" th:field="*{email}" id="email" required>
+        </div>
+
+        <button type="submit">Добавить сотрудника</button>
+    </form>
+
+    <a th:href="@{/employs}" class="back-link">← Вернуться к списку сотрудников</a>
+</div>
 </body>
 </html>

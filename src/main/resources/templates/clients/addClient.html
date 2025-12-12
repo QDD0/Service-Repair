@@ -3,20 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Clients</title>
-    <link rel="stylesheet" th:href="@{/css/client/styleClient.css}"/>
-
+    <link rel="stylesheet" th:href="@{/css/addStyle.css}"/>
 </head>
 <body>
-<form method="post" th:action="@{/clients}" th:object="${addClient}">
-    <input type="text" th:field="*{first_name}"><br>
-    <input type="text" th:field="*{surname}"><br>
-    <input type="text" th:field="*{last_name}"><br>
-    <input type="text" th:field="*{phone}"><br>
-    <input type="text" th:field="*{email}"><br>
-    <input type="text" th:field="*{address}"><br>
+<div class="container">
+    <h1 class="page-title">Добавление нового клиента</h1>
 
-    <button type="submit">Создать</button>
-</form>
-    <a th:href="@{/clients}">Вернуться назад</a>
+    <form method="post" th:action="@{/clients}" th:object="${addClient}">
+        <div class="form-group">
+            <label for="first_name">Имя:</label>
+            <input type="text" th:field="*{first_name}" id="first_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Фамилия:</label>
+            <input type="text" th:field="*{surname}" id="surname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Отчество:</label>
+            <input type="text" th:field="*{last_name}" id="last_name">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" th:field="*{phone}" id="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" th:field="*{email}" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" th:field="*{address}" id="address" required>
+        </div>
+
+        <button type="submit">Создать клиента</button>
+    </form>
+
+    <a th:href="@{/clients}" class="back-link">← Вернуться к списку клиентов</a>
+</div>
 </body>
 </html>

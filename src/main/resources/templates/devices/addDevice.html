@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Devices</title>
+    <link rel="stylesheet" th:href="@{/css/addStyle.css}"/>
 </head>
 <body>
-<form method="post" th:action="@{/devices}" th:object="${addDevice}">
-    <input type="text" th:field="*{type}"> <br>
-    <input type="text" th:field="*{brand}"><br>
-    <input type="text" th:field="*{model}"><br>
-    <input type="text" th:field="*{description}"><br>
+<div class="container">
+    <h1 class="page-title">Добавление устройства</h1>
 
-    <button type="submit">Создать</button>
-</form>
-<a th:href="@{/devices}">Вернуться назад</a>
+    <form method="post" th:action="@{/devices}" th:object="${addDevice}">
+        <div class="form-group">
+            <label for="type">Тип устройства:</label>
+            <input type="text" th:field="*{type}" id="type" placeholder="Например: Смартфон, Ноутбук" required>
+        </div>
+
+        <div class="form-group">
+            <label for="brand">Бренд:</label>
+            <input type="text" th:field="*{brand}" id="brand" placeholder="Например: Apple, Samsung" required>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Модель:</label>
+            <input type="text" th:field="*{model}" id="model" placeholder="Например: iPhone 13, Galaxy S21" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <input type="text" th:field="*{description}" id="description" placeholder="Описание проблемы или характеристик">
+        </div>
+
+        <button type="submit">Добавить устройство</button>
+    </form>
+
+    <a th:href="@{/devices}" class="back-link">← Вернуться к списку устройств</a>
+</div>
 </body>
 </html>
