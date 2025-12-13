@@ -1,25 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Devices</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать устройство</title>
+    <link rel="stylesheet" th:href="@{/css/editStyle.css}">
 </head>
 <body>
-<form method="post" th:action="@{/devices/{id}/update(id=${device.device_id})}" th:object="${device}">
-    <label for="type">Тип:</label>
-    <input type="text" id="type" th:field="*{type}"><br>
+<div class="container">
+    <h1>Редактирование устройства</h1>
+    <form method="post" th:action="@{/devices/{id}/update(id=${device.device_id})}" th:object="${device}">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="type">Тип:</label>
+                <input type="text" id="type" th:field="*{type}" required>
+            </div>
 
-    <label for="brand">Бренд:</label>
-    <input type="text" id="brand" th:field="*{brand}"><br>
+            <div class="form-group">
+                <label for="brand">Бренд:</label>
+                <input type="text" id="brand" th:field="*{brand}" required>
+            </div>
+        </div>
 
-    <label for="model">Модель:</label>
-    <input type="text" id="model" th:field="*{model}"><br>
+        <div class="form-group">
+            <label for="model">Модель:</label>
+            <input type="text" id="model" th:field="*{model}" required>
+        </div>
 
-    <label for="description">Описание:</label>
-    <input type="text" id="description" th:field="*{description}"><br>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <input type="text" id="description" th:field="*{description}">
+        </div>
 
-    <button type="submit">Отправить</button>
-</form>
-<a th:href="@{/devices}">Вернуться назад</a>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a th:href="@{/devices}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

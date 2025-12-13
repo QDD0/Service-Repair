@@ -1,28 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Supplier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать поставщика</title>
+    <link rel="stylesheet" th:href="@{/css/editStyle.css}">
 </head>
 <body>
-<form method="post" th:action="@{/suppliers/{id}/update(id=${suppliers.supplier_id})}" th:object="${suppliers}">
-    <label name="name_company"></label>
-    <input type="text" id="name_company" th:field="*{name_company}"><br>
-    <label name="first_name"></label>
-    <input type="text" id="first_name" th:field="*{first_name}"><br>
-    <label name="surname"></label>
-    <input type="text" id="surname" th:field="*{surname}"><br>
-    <label name="last_name"></label>
-    <input type="text" id="last_name" th:field="*{last_name}"><br>
-    <label name="phone"></label>
-    <input type="text" id="phone" th:field="*{phone}"><br>
-    <label name="address"></label>
-    <input type="text" id="address" th:field="*{address}"><br>
-    <label name="email"></label>
-    <input type="text" id="email" th:field="*{email}"><br>
+<div class="container">
+    <h1>Редактирование поставщика</h1>
+    <form method="post" th:action="@{/suppliers/{id}/update(id=${suppliers.supplier_id})}" th:object="${suppliers}">
+        <div class="form-group">
+            <label for="name_company">Название компании:</label>
+            <input type="text" id="name_company" th:field="*{name_company}" required>
+        </div>
 
-    <button type="submit">Сохранить</button>
-</form>
-<a th:href="@{/suppliers}">Вернуться назад</a>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="surname">Фамилия:</label>
+                <input type="text" id="surname" th:field="*{surname}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="first_name">Имя:</label>
+                <input type="text" id="first_name" th:field="*{first_name}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Отчество:</label>
+            <input type="text" id="last_name" th:field="*{last_name}">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="phone">Телефон:</label>
+                <input type="text" id="phone" th:field="*{phone}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" th:field="*{email}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" id="address" th:field="*{address}">
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a th:href="@{/suppliers}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

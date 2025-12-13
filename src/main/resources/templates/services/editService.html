@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать услугу</title>
+    <link rel="stylesheet" th:href="@{/css/editStyle.css}">
 </head>
 <body>
+<div class="container">
+    <h1>Редактирование услуги</h1>
     <form method="post" th:action="@{/services/{id}/update(id=${services.id_service})}" th:object="${services}">
-        <label name="name_service">Name: </label>
-        <input type="text" id="name_service" th:field="*{name_service}"><br>
+        <div class="form-group">
+            <label for="name_service">Название услуги:</label>
+            <input type="text" id="name_service" th:field="*{name_service}" required>
+        </div>
 
-        <label name="description">Description: </label>
-        <input type="text" id="description" th:field="*{description}"><br>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <input type="text" id="description" th:field="*{description}">
+        </div>
 
-        <label name="price">Price: </label>
-        <input type="text" id="price" th:field="*{price}"><br>
+        <div class="form-group">
+            <label for="price">Цена:</label>
+            <input type="text" id="price" th:field="*{price}" required>
+        </div>
 
-        <button type="submit">Редактировать</button>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a th:href="@{/services}" class="btn btn-secondary">Отмена</a>
+        </div>
     </form>
-
-<a th:href="@{/services}">Вернуться назад</a>
+</div>
 </body>
 </html>
