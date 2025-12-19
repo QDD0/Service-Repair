@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @Component
 public class SuppliesDAO {
@@ -30,6 +31,11 @@ public class SuppliesDAO {
 
     public int countAllSuppliers() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM suppliers", Integer.class);
+    }
+
+    public List<Supplier> getAllSupplier() {
+        return jdbcTemplate.query("SELECT * FROM supplier ORDER BY name_company",
+                new BeanPropertyRowMapper<>(Supplier.class));
     }
 
     public int addSupplier(Suppliers supplier) {

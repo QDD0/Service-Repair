@@ -52,4 +52,43 @@ public class StorageController {
 
         return "redirect:/storage";
     }
+
+    @GetMapping("/{id}")
+    public String showStorage(Model model, @PathVariable("id") int id) {
+        Storage storage = storageDAO.showStorage(id);
+
+        if (storage != null) {
+            model.addAttribute("storage", storage);
+            model.addAttribute("supplier", suppliesDAO.getByIdSupplier(storage.getSupplier_id()));
+            return "storage/showStorage";
+        }
+        return "redirect:/storage";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editStorage(Model model, @PathVariable("id") int id) {
+        Storage storage = storageDAO.showStorage(id);
+        if (storage != null) {
+            model.addAttribute("storage", storage);
+            model.addAttribute("supplier", suppliesDAO.getAllSuppliers());
+            return "storage/editStorage";
+        }
+        return "redirect:/storage";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateStorage(@ModelAttribute("storage") Storage storage, @PathVariable("id") int id, @RequestParam("supplier_id") int supplierId) {
+        storage.setPart_id(id);
+        storage.setSupplier_id(supplierId);
+
+        storageDAO.updateStorage(storage, id);
+
+        return "redirect:/storage";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteStorage(@PathVariable("id") int id) {
+        storageDAO.deleteStorage(id);
+        return "redirect:/storage";
+    }
 }

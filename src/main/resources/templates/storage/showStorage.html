@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Details</title>
+    <link rel="stylesheet" th:href="@{/css/showStyle.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>Детали запчасти</h1>
+
+    <div class="details-container" th:if="${storage != null}">
+        <div class="detail-item">
+            <span class="detail-label">Название:</span>
+            <span class="detail-value" th:text="${storage.part_name}">Name</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Код:</span>
+            <span class="detail-value" th:text="${storage.part_code}">Code</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Количество:</span>
+            <span class="detail-value" th:text="${storage.count}">Count</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Цена:</span>
+            <span class="detail-value" th:text="${storage.price}">Price</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Поставщик:</span>
+            <span class="detail-value">
+                <span th:if="${supplier != null}" th:text="${supplier.name_company}">Supplier Name</span>
+                <span th:if="${supplier == null}">Не указан</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-edit" th:href="@{/storage/{id}/edit(id=${storage.part_id})}">Редактировать</a>
+
+        <form class="form-delete" method="post" th:action="@{/storage/{id}/delete(id=${storage.part_id})}">
+            <button class="btn btn-delete" type="submit">Удалить</button>
+        </form>
+
+        <a class="btn btn-back" th:href="@{/storage}">Вернуться назад</a>
+    </div>
+</div>
+</body>
+</html>
