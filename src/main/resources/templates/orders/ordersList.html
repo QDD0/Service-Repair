@@ -28,7 +28,7 @@
     <div class="list-container">
         <a class="card"
            th:each="order : ${ordersList}"
-           th:href="@{/orders/{id}(id=${order.order_id})}">
+           th:href="@{/orders/{id}(id=${order.getOrder_id()})}">
             <div class="card-name">
                 Серийный номер: <span th:text="${order.serial_number}"></span>
             </div>

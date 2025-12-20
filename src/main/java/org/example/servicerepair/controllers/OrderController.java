@@ -55,4 +55,18 @@ public class OrderController {
 
         return "redirect:/orders";
     }
+
+    @GetMapping("/{id}")
+    public String showOrder(Model model, @PathVariable("id") int id) {
+        Orders orders = orderDAO.showOrder(id);
+
+        if (orders != null) {
+            model.addAttribute("order", orders);
+            model.addAttribute("client", clientDAO.getById(orders.getClient_id()));
+            model.addAttribute("device", deviceDAO.getById(orders.getDevice_id()));
+
+            return "orders/showOrder";
+        }
+        return "redirect:/orders";
+    }
 }

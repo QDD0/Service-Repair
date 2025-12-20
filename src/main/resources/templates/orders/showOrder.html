@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" th:href="@{/css/showStyle.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Детали заказа</h1>
+
+    <div class="details-container" th:if="${order != null}">
+        <div class="detail-item">
+            <span class="detail-label">Номер заказа:</span>
+            <span class="detail-value" th:text="${order.serial_number}">serial_number</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Проблема:</span>
+            <span class="detail-value" th:text="${order.problem}">problem</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Дата приема:</span>
+            <span class="detail-value" th:text="${order.date_in}">date_in</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Дата выдачи:</span>
+            <span class="detail-value" th:text="${order.date_out}">date_out</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Гарантия:</span>
+            <span class="detail-value" th:text="${order.warranty}">warranty</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Клиент:</span>
+            <span class="detail-value">
+                <span th:if="${client != null}"
+                      th:text="${client.surname + ' ' + client.first_name + ' ' + client.last_name}">
+                    ФИО клиента
+                </span>
+                <span th:if="${client == null}">Не указан</span>
+            </span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Устройство:</span>
+            <span class="detail-value">
+                <span th:if="${device != null}"
+                      th:text="${device.brand + ' ' + device.type + ' ' + device.model}">
+                    Устройство
+                </span>
+                <span th:if="${device == null}">Не указано</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-edit" th:href="@{/orders/{id}/edit(id=${order.order_id})}">Редактировать</a>
+
+        <form class="form-delete" method="post" th:action="@{/orders/{id}/delete(id=${order.order_id})}">
+            <button class="btn btn-delete" type="submit">Удалить</button>
+        </form>
+
+        <a class="btn btn-back" th:href="@{/orders}">Вернуться назад</a>
+    </div>
+</div>
+</body>
+</html>

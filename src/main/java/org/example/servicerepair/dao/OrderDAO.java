@@ -34,4 +34,9 @@ public class OrderDAO {
                 order.getClient_id(), order.getDevice_id(), order.getSerial_number(), order.getProblem(), order.getDate_in(), order.getDate_out(), order.getWarranty()
         );
     }
+
+    public Orders showOrder(int id) {
+        return jdbcTemplate.query("SELECT * FROM orders WHERE order_id = ? ", new Object[]{id},
+                new BeanPropertyRowMapper<>(Orders.class)).stream().findAny().orElse(null);
+    }
 }
