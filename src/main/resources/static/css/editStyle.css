@@ -159,3 +159,32 @@ input[type="date"] {
 input[type="hidden"] {
     display: none;
 }
+
+.input-with-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-unit input {
+    padding-right: 40px;
+    width: 100%;
+}
+
+.input-with-unit .unit {
+    position: absolute;
+    right: 15px;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+input[type="hidden"] {
+    display: none;
+}
+
+select option {
+    padding: 8px 12px;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 100%;
+}

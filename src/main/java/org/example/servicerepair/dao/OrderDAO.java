@@ -24,6 +24,10 @@ public class OrderDAO {
                 new BeanPropertyRowMapper<>(Orders.class), size, offset);
     }
 
+    public List<Orders> getAllOrders() {
+        return jdbcTemplate.query("SELECT * FROM orders", new BeanPropertyRowMapper<>(Orders.class));
+    }
+
     public int countOrders() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM orders", Integer.class);
     }

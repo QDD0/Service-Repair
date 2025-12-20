@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Payments</title>
+    <title>Оплата</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -19,12 +19,40 @@
     </div>
 </header>
 
-<div th:each="payment : ${paymentsList}">
-    <a th:href="@{/payments/{id}(id=${payment.getOrder_id()})}">
-        <span th:text="${payment.amount}">amount</span><br>
-        <span th:text="${payment.payment_date}">payment_date</span><br>
-        <span th:text="${payment.payment_method}">payment_method</span><br>
-    </a>
+<div class="content">
+    <div class="page-header">
+        <h1 class="page-title">Оплата</h1>
+        <a href="payments/addPayment" class="add-button">Добавить платёж</a>
+    </div>
+
+    <div class="list-container">
+        <a class="card"
+           th:each="payment : ${paymentsList}"
+           th:href="@{/payments/{id}(id=${payment.getId_payment()})}">
+            <div class="card-name">
+                Платёж #<span th:text="${payment.getId_payment()}"></span>
+            </div>
+            <div class="card-info">
+                Сумма: <span th:text="${payment.amount}"></span>
+            </div>
+            <div class="card-info">
+                Дата оплаты: <span th:text="${payment.payment_date}"></span>
+            </div>
+            <div class="card-info">
+                Способ оплаты: <span th:text="${payment.payment_method}"></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="pagination">
+        <a th:if="${currentPage > 1}"
+           th:href="@{/payments(page=${currentPage - 1}, size=6)}">Назад</a>
+
+        <span th:text="'Страница ' + ${currentPage} + ' из ' + ${totalPages}"></span>
+
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{/payments(page=${currentPage + 1}, size=6)}">Вперед</a>
+    </div>
 </div>
 </body>
 </html>

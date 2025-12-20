@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+     <link rel="stylesheet" th:href="@{/css/showStyle.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Информация о платеже</h1>
+
+    <div th:if="${payment != null}" class="details-container">
+
+        <div class="detail-item">
+            <span class="detail-label">Сумма:</span>
+            <span class="detail-value" th:text="${payment.amount}">amount</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Дата платежа:</span>
+            <span class="detail-value" th:text="${payment.payment_date}">
+                payment_date
+            </span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Метод оплаты:</span>
+            <span class="detail-value" th:text="${payment.payment_method}">
+                payment_method
+            </span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Информация:</span>
+            <span class="detail-value">
+                <span th:if="${orders != null}"
+                      th:text="${orders.problem + ' ' + orders.serial_number}">
+                </span>
+                <span th:if="${orders == null}">
+                    Не указан
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-edit"
+           th:href="@{/payments/{id}/edit(id=${payment.id_payment})}">Редактировать</a>
+
+        <form class="form-delete"
+              method="post"
+              th:action="@{/payments/{id}/delete(id=${payment.id_payment})}">
+            <button class="btn btn-delete" type="submit">Удалить</button>
+        </form>
+
+        <a class="btn btn-back" th:href="@{/payments}">Вернуться назад</a>
+    </div>
+</div>
+</body>
+</html>

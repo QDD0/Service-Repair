@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AddPayment</title>
+    <link rel="stylesheet" th:href="@{/css/addStyle.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-title">Добавление платежа</h1>
+
+    <form method="post" th:action="@{/payments}" th:object="${addPayment}">
+        <div class="form-group">
+            <label for="amount">Сумма оплаты (руб.):</label>
+            <input type="text" th:field="*{amount}" id="amount" placeholder="Введите сумму" required>
+        </div>
+
+        <div class="form-group">
+            <label for="payment_date">Дата оплаты:</label>
+            <input type="date" th:field="*{payment_date}" id="payment_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="payment_method">Способ оплаты:</label>
+            <input type="text" th:field="*{payment_method}" id="payment_method" placeholder="Например: Наличные, Карта, Перевод" required>
+        </div>
+
+        <div class="form-group">
+            <label for="order">Выбор проблемы:</label>
+            <select id="order" name="order_id" required>
+                <option value="">Выберите проблему устройства</option>
+                <option th:each="order : ${addOrder}"
+                        th:value="${order.order_id}"
+                        th:text="${order.problem}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit">Сохранить платеж</button>
+    </form>
+
+    <a th:href="@{/payments}" class="back-link">Вернуться к платежам</a>
+</div>
+</body>
+</html>

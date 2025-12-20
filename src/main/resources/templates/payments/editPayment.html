@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование платежа</title>
+    <link rel="stylesheet" th:href="@{/css/editStyle.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>Редактирование платежа #<span th:text="${payment.id_payment}"></span></h1>
+
+    <form method="post" th:action="@{/payments/{id}/update(id=${payment.id_payment})}" th:object="${payment}">
+        <input type="hidden" th:field="*{id_payment}">
+
+        <div class="form-group">
+            <label for="amount">Сумма платежа:</label>
+            <div class="input-with-unit">
+                <input type="number" id="amount" th:field="*{amount}" step="0.01" min="0" required>
+                <span class="unit">₽</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="payment_date">Дата оплаты:</label>
+                <input type="date" id="payment_date" th:field="*{payment_date}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="payment_method">Способ оплаты:</label>
+                <input type="text" id="payment_method" th:field="*{payment_method}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="order">Связанный заказ:</label>
+            <select id="order" name="order_id" required>
+                <option value="">Выберите заказ</option>
+                <option th:each="order : ${orders}"
+                        th:value="${order.order_id}"
+                        th:text="'Заказ #' + ${order.order_id} + ': ' + ${order.problem}"
+                        th:selected="${payment.order_id == order.order_id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a th:href="@{/payments}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
