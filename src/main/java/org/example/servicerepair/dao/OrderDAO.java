@@ -39,4 +39,13 @@ public class OrderDAO {
         return jdbcTemplate.query("SELECT * FROM orders WHERE order_id = ? ", new Object[]{id},
                 new BeanPropertyRowMapper<>(Orders.class)).stream().findAny().orElse(null);
     }
+
+    public void updateOrder(Orders order, int id) {
+        jdbcTemplate.update("UPDATE orders SET client_id=?, device_id=?, serial_number=?, problem=?, date_in=?, date_out=?, warranty=? WHERE order_id =?",
+                order.getClient_id(), order.getDevice_id(), order.getSerial_number(), order.getProblem(), order.getDate_in(), order.getDate_out(), order.getWarranty(), id);
+    }
+
+    public void deleteOrder(int id) {
+        jdbcTemplate.update("DELETE FROM orders WHERE order_id = ?", id);
+    }
 }

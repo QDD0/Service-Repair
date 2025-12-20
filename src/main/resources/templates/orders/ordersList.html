@@ -28,7 +28,7 @@
     <div class="list-container">
         <a class="card"
            th:each="order : ${ordersList}"
-           th:href="@{/orders/{id}(id=${order.getOrder_id()})}">
+           th:href="@{/orders/{id}(id=${order.getOrder_id() })}">
             <div class="card-name">
                 Серийный номер: <span th:text="${order.serial_number}"></span>
             </div>
@@ -42,7 +42,7 @@
                 Дата выдачи: <span th:text="${order.date_out}"></span>
             </div>
             <div class="card-info">
-                Гарантия: <span th:text="${order.warranty ? 'Да' : 'Нет'}"></span>
+                Гарантия: <span th:text="${order.warranty}"></span>
             </div>
         </a>
     </div>

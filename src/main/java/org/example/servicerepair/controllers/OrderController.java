@@ -69,4 +69,37 @@ public class OrderController {
         }
         return "redirect:/orders";
     }
+
+    @GetMapping("/{id}/edit")
+    public String editOrder(Model model, @PathVariable("id") int id) {
+        Orders orders = orderDAO.showOrder(id);
+
+        if (orders != null) {
+            model.addAttribute("orders", orders);
+            model.addAttribute("clients", clientDAO.getAllClients());
+            model.addAttribute("devices", deviceDAO.getAllDevices());
+
+            return "orders/editOrder";
+        }
+        return "redirect:/orders";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateOrder(@ModelAttribute("orders") Orders orders,
+                              @PathVariable("id") int id,
+                              @RequestParam("client_id") int client_id,
+                              @RequestParam("device_id") int device_id) {
+        orders.setClient_id(client_id);
+        orders.setDevice_id(device_id);
+
+        orderDAO.updateOrder(orders, id);
+
+        return "redirect:/orders";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteOrder(@PathVariable("id") int id) {
+        orderDAO.deleteOrder(id);
+        return "redirect:/orders";
+    }
 }

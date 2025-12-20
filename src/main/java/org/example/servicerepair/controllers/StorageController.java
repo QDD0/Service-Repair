@@ -59,7 +59,7 @@ public class StorageController {
 
         if (storage != null) {
             model.addAttribute("storage", storage);
-            model.addAttribute("supplier", suppliesDAO.getByIdSupplier(storage.getSupplier_id()));
+            model.addAttribute( "supplier", suppliesDAO.getByIdSupplier(storage.getSupplier_id()));
             return "storage/showStorage";
         }
         return "redirect:/storage";

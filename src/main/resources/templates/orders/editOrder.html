@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование заказа</title>
+    <link rel="stylesheet" th:href="@{/css/editStyle.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>Редактирование заказа</h1>
+
+    <form method="post" th:action="@{/orders/{id}/update(id=${orders.order_id})}" th:object="${orders}">
+        <input type="hidden" th:field="*{order_id}">
+
+        <div class="form-group">
+            <label for="serial_number">Серийный номер:</label>
+            <input type="text" id="serial_number" th:field="*{serial_number}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="problem">Описание проблемы:</label>
+            <textarea id="problem" th:field="*{problem}" rows="4" required></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="date_in">Дата поступления:</label>
+                <input type="date" id="date_in" th:field="*{date_in}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date_out">Дата выдачи:</label>
+                <input type="date" id="date_out" th:field="*{date_out}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="warranty">Гарантия:</label>
+            <input type="text" id="warranty" th:field="*{warranty}">
+        </div>
+
+        <div class="form-group">
+            <label for="client">Клиент:</label>
+            <select id="client" name="client_id" required>
+                <option value="">Выберите клиента</option>
+                <option th:each="client : ${clients}"
+                        th:value="${client.client_id}"
+                        th:text="${client.surname + ' ' + client.first_name + ' ' + client.last_name}"
+                        th:selected="${orders.client_id == client.client_id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="device">Устройство:</label>
+            <select id="device" name="device_id" required>
+                <option value="">Выберите устройство</option>
+                <option th:each="device : ${devices}"
+                        th:value="${device.device_id}"
+                        th:text="${device.brand + ' ' + device.type + ' ' + device.model}"
+                        th:selected="${orders.device_id == device.device_id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a th:href="@{/orders}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

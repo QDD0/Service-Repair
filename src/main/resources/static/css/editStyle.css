@@ -43,7 +43,10 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="number"],
-select {
+input[type="date"],
+input[type="tel"],
+select,
+textarea {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
@@ -56,10 +59,19 @@ select {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
-select:focus {
+input[type="date"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 200px;
 }
 
 .button-group {
@@ -124,7 +136,6 @@ select:focus {
 
 select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232c3e50' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 12px;
@@ -139,6 +150,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+input[type="date"] {
+    min-height: 48px;
 }
 
 input[type="hidden"] {
