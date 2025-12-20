@@ -52,6 +52,7 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="number"],
+input[type="date"],
 select {
     width: 100%;
     padding: 12px;
@@ -60,6 +61,11 @@ select {
     border: 1px solid #d2d2d2;
     transition: border-color 0.25s, box-shadow 0.25s;
     background: #fff;
+    color: #333;
+}
+
+input[type="date"] {
+    cursor: pointer;
 }
 
 input:focus,
@@ -67,6 +73,16 @@ select:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, .25);
+}
+
+input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.05);
+}
+
+input:invalid:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, .25);
 }
 
 button {
@@ -80,6 +96,7 @@ button {
     color: #fff;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.25s, box-shadow 0.25s;
+    margin-top: 10px;
 }
 
 button:hover {

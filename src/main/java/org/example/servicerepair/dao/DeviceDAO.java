@@ -24,6 +24,10 @@ public class DeviceDAO {
                 new BeanPropertyRowMapper<>(Device.class), size, offset);
     }
 
+    public List<Device> getAllDevices() {
+        return jdbcTemplate.query("SELECT * FROM device", new BeanPropertyRowMapper<>(Device.class));
+    }
+
     public int countDevices() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM device", Integer.class);
     }

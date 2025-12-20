@@ -26,6 +26,10 @@ public class ClientDAO {
         );
     }
 
+    public List<Client> getAllClients() {
+        return jdbcTemplate.query("SELECT * FROM client", new BeanPropertyRowMapper<>(Client.class));
+    }
+
     public void addClient(Client client) {
         jdbcTemplate.update("INSERT INTO client(first_name, surname, last_name, phone, email, address) VALUES  (?, ?, ?, ?, ?, ?)",
                 client.getFirst_name(), client.getSurname(), client.getLast_name(), client.getPhone(), client.getEmail(), client.getAddress());

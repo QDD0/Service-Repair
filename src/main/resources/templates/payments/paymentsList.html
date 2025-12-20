@@ -18,5 +18,13 @@
         <a th:href="@{/payments}">Оплата</a>
     </div>
 </header>
+
+<div th:each="payment : ${paymentsList}">
+    <a th:href="@{/payments/{id}(id=${payment.getOrder_id()})}">
+        <span th:text="${payment.amount}">amount</span><br>
+        <span th:text="${payment.payment_date}">payment_date</span><br>
+        <span th:text="${payment.payment_method}">payment_method</span><br>
+    </a>
+</div>
 </body>
 </html>
